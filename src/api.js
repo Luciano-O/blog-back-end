@@ -16,6 +16,7 @@ app.get('/user', tokenValidation, User.getUsers);
 app.get('/user/:id', tokenValidation, User.getUserById);
 
 app.post('/categories', tokenValidation, Category.postCategory);
+app.get('/categories', tokenValidation, Category.getCategories);
 
 // ...
 
