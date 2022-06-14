@@ -56,7 +56,20 @@ const postLogin = async (email, password) => {
   return { status: 200, response: { token } };
 };
 
+const getUsers = async () => {
+  const users = await User.findAll();
+
+  const finalUsers = users
+    .map(({ id, displayName, image, email }) => ({ id, displayName, image, email }));
+
+  return {
+    status: 200,
+    response: finalUsers,
+  };
+};
+
 module.exports = {
   postLogin,
   postUser,
+  getUsers,
 };

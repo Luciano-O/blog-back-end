@@ -21,7 +21,14 @@ const postUser = async (req, res) => {
   res.status(status).json(response);
 };
 
+const getUsers = async (req, res) => {
+  const { status, response } = await User.getUsers();
+
+  res.status(status).json(response);
+};
+
 module.exports = {
   postLogin,
   postUser,
+  getUsers,
 };

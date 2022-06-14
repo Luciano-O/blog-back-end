@@ -10,7 +10,9 @@ app.use(express.json());
 
 app.post('/login', User.postLogin);
 
-app.post('/user', tokenValidation, User.postUser);
+app.post('/user', User.postUser);
+
+app.get('/user', tokenValidation, User.getUsers);
 
 // ...
 
