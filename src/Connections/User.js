@@ -27,8 +27,17 @@ const getUsers = async (req, res) => {
   res.status(status).json(response);
 };
 
+const getUserById = async (req, res) => {
+  const { id } = req.params;
+
+  const { status, response } = await User.getUserById(id);
+
+  res.status(status).json(response);
+};
+
 module.exports = {
   postLogin,
   postUser,
   getUsers,
+  getUserById,
 };

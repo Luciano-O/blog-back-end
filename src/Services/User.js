@@ -68,8 +68,30 @@ const getUsers = async () => {
   };
 };
 
+const getUserById = async (id) => {
+  const user = await User.findByPk(id);
+
+  if (!user) {
+    return {
+      status: 404,
+      response: { message: 'User does not exist' },
+    };
+  }
+
+  return {
+    status: 200,
+    response: {
+      id: user.id,
+      email: user.email,
+      displayName: user.displayName,
+      image: user.image,
+    },
+  };
+};
+
 module.exports = {
   postLogin,
   postUser,
   getUsers,
+  getUserById,
 };
