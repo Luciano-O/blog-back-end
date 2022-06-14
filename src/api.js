@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require('./Connections/User');
 const Category = require('./Connections/Category');
+const BlogPost = require('./Connections/BlogPost');
 const tokenValidation = require('./middlewares/TokenValidation');
 
 // ...
@@ -17,6 +18,8 @@ app.get('/user/:id', tokenValidation, User.getUserById);
 
 app.post('/categories', tokenValidation, Category.postCategory);
 app.get('/categories', tokenValidation, Category.getCategories);
+
+app.post('/post', tokenValidation, BlogPost.createPost);
 
 // ...
 

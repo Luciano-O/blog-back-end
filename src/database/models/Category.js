@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   },
   {
     timestamps: false,
-    tableName: 'Categories',
+    tableName: 'Categories'
   });
 
   //Category.associate = (models) => {

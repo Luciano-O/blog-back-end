@@ -8,11 +8,12 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     content: DataTypes.STRING,
     userId: {type: DataTypes.INTEGER, foreignKey: true},
-    published: DataTypes.DATE,
-    updated: DataTypes.DATE,
+    published: {type: 'TIMESTAMP', defaultValue: sequelize.literal('CURRENT_TIMESTAMP')},
+    updated: {type: 'TIMESTAMP', defaultValue: sequelize.literal('CURRENT_TIMESTAMP')},
   },
   {
-    tableName: 'BlogPost',
+    timestamps: false,
+    tableName: 'BlogPosts',
   });
 
   BlogPost.associate = (models) => {
