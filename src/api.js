@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('./Connections/User');
+const Category = require('./Connections/Category');
 const tokenValidation = require('./middlewares/TokenValidation');
 
 // ...
@@ -11,10 +12,10 @@ app.use(express.json());
 app.post('/login', User.postLogin);
 
 app.post('/user', User.postUser);
-
 app.get('/user', tokenValidation, User.getUsers);
-
 app.get('/user/:id', tokenValidation, User.getUserById);
+
+app.post('/categories', tokenValidation, Category.postCategory);
 
 // ...
 
