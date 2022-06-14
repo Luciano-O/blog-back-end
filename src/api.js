@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('./Connections/User');
+const tokenValidation = require('./middlewares/TokenValidation');
 
 // ...
 
@@ -7,7 +8,9 @@ const app = express();
 
 app.use(express.json());
 
-app.post('/login', User.postUser);
+app.post('/login', User.postLogin);
+
+app.post('/user', tokenValidation, User.postUser);
 
 // ...
 
