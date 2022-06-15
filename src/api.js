@@ -26,6 +26,7 @@ app.get('/categories', AccessControl, tokenValidation, Category.getCategories);
 
 app.post('/post', AccessControl, tokenValidation, BlogPost.createPost);
 app.get('/post', AccessControl, tokenValidation, BlogPost.getPosts);
+app.get('/post/search', AccessControl, tokenValidation, BlogPost.searchByTerm);
 app.get('/post/:id', AccessControl, tokenValidation, BlogPost.getPostById);
 app.put('/post/:id', AccessControl, tokenValidation, BlogPost.putPost);
 app.delete('/post/:id', AccessControl, tokenValidation, BlogPost.deletePost);
