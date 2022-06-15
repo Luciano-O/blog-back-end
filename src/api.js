@@ -20,7 +20,7 @@ app.post('/categories', tokenValidation, Category.postCategory);
 app.get('/categories', tokenValidation, Category.getCategories);
 
 app.post('/post', tokenValidation, BlogPost.createPost);
-
+app.get('/post', tokenValidation, BlogPost.getPosts);
 // ...
 
 // É importante exportar a constante `app`,
