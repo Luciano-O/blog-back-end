@@ -81,8 +81,34 @@ const getPostById = async (id) => {
   };
 };
 
+const putPost = async (id, title, content, userId) => {
+  if (!title || !content) {
+    return { status: 400, response: { message: 'Some required fields are missing' } };
+  }
+
+  const post = await BlogPost.findByPk(id);
+  
+  if (post.userId !== userId) {
+    return { status: 401, response: { message: 'Unauthorized user' } };
+  }
+  
+  await BlogPost.update(
+    { title, content },
+    { where: { id } },
+  );
+  const updatedPost = await BlogPost.findByPk(id, {
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category, as: 'categories' },
+    ],
+  });
+
+  return { status: 200, response: updatedPost };
+};
+
 module.exports = {
   createPost,
   getPosts,
   getPostById,
+  putPost,
 };

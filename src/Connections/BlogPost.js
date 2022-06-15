@@ -22,8 +22,19 @@ const getPostById = async (req, res) => {
   res.status(status).json(response);
 };
 
+const putPost = async (req, res) => {
+  const userId = req.user;
+  const { id } = req.params;
+  const { title, content } = req.body;
+
+  const { status, response } = await BlogPost.putPost(id, title, content, userId);
+
+  res.status(status).json(response);
+};
+
 module.exports = {
   createPost,
   getPosts,
   getPostById,
+  putPost,
 };

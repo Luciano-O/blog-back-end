@@ -4,7 +4,6 @@ const postLogin = async (req, res) => {
   const { email, password } = req.body;
 
   const { status, response } = await User.postLogin(email, password);
-
   res.status(status).json(response);
 };
 

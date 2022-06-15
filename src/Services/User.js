@@ -34,9 +34,9 @@ const postUser = async (displayName, email, password, image) => {
 
   if (valid.status !== 200) return valid;
 
-  await User.create({ displayName, email, password, image });
+  const response = await User.create({ displayName, email, password, image });
 
-  const token = jwt.sign({ data: email }, secret, jwtConfig);
+  const token = jwt.sign({ data: { email, id: response.id } }, secret, jwtConfig);
 
   return { status: 201, response: { token } };
 };
@@ -51,7 +51,7 @@ const postLogin = async (email, password) => {
     return { status: 400, response: { message: 'Invalid fields' } };
   }
 
-  const token = jwt.sign({ data: email }, secret, jwtConfig);
+  const token = jwt.sign({ data: { email, id: rawUser.id } }, secret, jwtConfig);
 
   return { status: 200, response: { token } };
 };
