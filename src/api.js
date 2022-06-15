@@ -27,6 +27,7 @@ app.post('/post', AccessControl, tokenValidation, BlogPost.createPost);
 app.get('/post', AccessControl, tokenValidation, BlogPost.getPosts);
 app.get('/post/:id', AccessControl, tokenValidation, BlogPost.getPostById);
 app.put('/post/:id', AccessControl, tokenValidation, BlogPost.putPost);
+app.delete('/post/:id', AccessControl, tokenValidation, BlogPost.deletePost);
 // ...
 
 // É importante exportar a constante `app`,

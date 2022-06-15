@@ -22,13 +22,13 @@ const verifyCreate = (title, content, categoryIds) => {
   return { status: 200, response: '' };
 };
 
-const createPost = async (title, content, categoryIds) => {
+const createPost = async (title, content, categoryIds, userId) => {
   const verify = verifyCreate(title, content, categoryIds);
   if (verify.status === 400) return verify;
   const t = await sequelize.transaction();
 
   try {
-    const { dataValues } = await BlogPost.create({ title, content, userId: 1 }, { transaction: t });
+    const { dataValues } = await BlogPost.create({ title, content, userId }, { transaction: t });
     const insert = categoryIds.map((item) => ({ postId: dataValues.id, categoryId: item }));
     await PostCategory.bulkCreate(insert, { transaction: t });
 
@@ -106,9 +106,24 @@ const putPost = async (id, title, content, userId) => {
   return { status: 200, response: updatedPost };
 };
 
+const deletePost = async (id, userId) => {
+  const post = await BlogPost.findByPk(id);
+
+  if (!post) return { status: 404, response: { message: 'Post does not exist' } };
+  console.log(post.dataValues.userId !== userId);
+  if (post.dataValues.userId !== userId) {
+    return { status: 401, response: { message: 'Unauthorized user' } };
+  }
+
+  await BlogPost.destroy({ where: { id } });
+
+  return { status: 204, response: null };
+};
+
 module.exports = {
   createPost,
   getPosts,
   getPostById,
   putPost,
+  deletePost,
 };

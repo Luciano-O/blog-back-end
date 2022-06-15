@@ -2,8 +2,9 @@ const BlogPost = require('../Services/BlogPost');
 
 const createPost = async (req, res) => {
   const { title, content, categoryIds } = req.body;
+  const userId = req.user;
 
-  const { status, response } = await BlogPost.createPost(title, content, categoryIds);
+  const { status, response } = await BlogPost.createPost(title, content, categoryIds, userId);
 
   res.status(status).json(response);
 };
@@ -32,9 +33,19 @@ const putPost = async (req, res) => {
   res.status(status).json(response);
 };
 
+const deletePost = async (req, res) => {
+  const userId = req.user;
+  const { id } = req.params;
+
+  const { status, response } = await BlogPost.deletePost(id, userId);
+
+  res.status(status).json(response);
+};
+
 module.exports = {
   createPost,
   getPosts,
   getPostById,
   putPost,
+  deletePost,
 };
