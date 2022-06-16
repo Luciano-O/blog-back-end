@@ -18,6 +18,7 @@ app.post('/login', AccessControl, User.postLogin);
 
 app.post('/user', AccessControl, User.postUser);
 app.get('/user', AccessControl, tokenValidation, User.getUsers);
+app.get('/user/me', AccessControl, tokenValidation, User.getMyUser);
 app.delete('/user/me', AccessControl, tokenValidation, User.deleteUser);
 app.get('/user/:id', AccessControl, tokenValidation, User.getUserById);
 
