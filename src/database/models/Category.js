@@ -12,10 +12,5 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'Categories'
   });
 
-  //Category.associate = (models) => {
-  //  Category.hasOne(models.BlogPosts,
-  //    {foreignKey: 'CategoryId', as: 'BlogPosts'});
-  //}
-
   return Category;
 }
