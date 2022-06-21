@@ -50,6 +50,12 @@ const searchByTerm = async (req, res) => {
   res.status(status).json(response);
 };
 
+const getRandomPosts = async (req, res) => {
+  const { status, response } = await BlogPost.getRandomPosts();
+
+  res.status(status).json(response);
+};
+
 module.exports = {
   createPost,
   getPosts,
@@ -57,4 +63,5 @@ module.exports = {
   putPost,
   deletePost,
   searchByTerm,
+  getRandomPosts,
 };

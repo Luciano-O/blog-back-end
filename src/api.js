@@ -18,15 +18,16 @@ app.post('/login', AccessControl, User.postLogin);
 
 app.post('/user', AccessControl, User.postUser);
 app.get('/user', AccessControl, tokenValidation, User.getUsers);
+app.get('/post/random', AccessControl, BlogPost.getRandomPosts);
 app.get('/user/me', AccessControl, tokenValidation, User.getMyUser);
 app.delete('/user/me', AccessControl, tokenValidation, User.deleteUser);
 app.get('/user/:id', AccessControl, tokenValidation, User.getUserById);
 
 app.post('/categories', AccessControl, tokenValidation, Category.postCategory);
-app.get('/categories', AccessControl, tokenValidation, Category.getCategories);
+app.get('/categories', AccessControl, Category.getCategories);
 
 app.post('/post', AccessControl, tokenValidation, BlogPost.createPost);
-app.get('/post', AccessControl, tokenValidation, BlogPost.getPosts);
+app.get('/post', AccessControl, BlogPost.getPosts);
 app.get('/post/search', AccessControl, tokenValidation, BlogPost.searchByTerm);
 app.get('/post/:id', AccessControl, tokenValidation, BlogPost.getPostById);
 app.put('/post/:id', AccessControl, tokenValidation, BlogPost.putPost);

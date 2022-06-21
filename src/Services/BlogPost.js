@@ -140,6 +140,25 @@ const searchByTerm = async (searchTerm) => {
   return { status: 200, response: posts };
 };
 
+const getRandomPosts = async () => {
+  const allPosts = await BlogPost.findAll({
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category, as: 'categories' },
+    ],
+  });
+
+  const finalArr = [];
+
+  for (let i = 0; i < 3; i += 1) {
+    const num = Math.floor(Math.random() * allPosts.length + 1);
+    finalArr.push(allPosts[num]);
+    allPosts.splice(num, 1);
+  }
+
+  return { status: 200, response: finalArr };
+}; 
+
 module.exports = {
   createPost,
   getPosts,
@@ -147,4 +166,5 @@ module.exports = {
   putPost,
   deletePost,
   searchByTerm,
+  getRandomPosts,
 };
