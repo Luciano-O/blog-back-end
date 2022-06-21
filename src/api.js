@@ -24,6 +24,7 @@ app.delete('/user/me', AccessControl, tokenValidation, User.deleteUser);
 app.get('/user/:id', AccessControl, tokenValidation, User.getUserById);
 
 app.post('/categories', AccessControl, tokenValidation, Category.postCategory);
+app.get('/categories/:id', AccessControl, Category.getCategoryById);
 app.get('/categories', AccessControl, Category.getCategories);
 
 app.post('/post', AccessControl, tokenValidation, BlogPost.createPost);

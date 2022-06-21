@@ -151,7 +151,8 @@ const getRandomPosts = async () => {
   const finalArr = [];
 
   for (let i = 0; i < 3; i += 1) {
-    const num = Math.floor(Math.random() * allPosts.length + 1);
+    const num = Math.floor(Math.random() * (allPosts.length - 1) + 1);
+    console.log(num);
     finalArr.push(allPosts[num]);
     allPosts.splice(num, 1);
   }

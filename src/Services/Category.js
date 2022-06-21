@@ -1,4 +1,4 @@
-const { Category } = require('../database/models');
+const { BlogPost, Category } = require('../database/models');
 
 const postCategory = async (name) => {
   if (!name) {
@@ -25,7 +25,18 @@ const getCategories = async () => {
   };
 };
 
+const getCategoryById = async (id) => {
+  const category = await Category.findByPk(id, {
+    include: [
+      { model: BlogPost, as: 'blogPost' },
+    ],
+  });
+
+  return { status: 200, response: category };
+};
+
 module.exports = {
   postCategory,
   getCategories,
+  getCategoryById,
 };
