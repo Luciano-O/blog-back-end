@@ -6,8 +6,6 @@ const BlogPost = require('./Connections/BlogPost');
 const tokenValidation = require('./middlewares/TokenValidation');
 const AccessControl = require('./middlewares/AccessControl');
 
-// ...
-
 const app = express();
 
 app.use(express.json());
