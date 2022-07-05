@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { User } = require('../database/models');
+require('dotenv').config();
 
 const secret = process.env.JWT_SECRET;
 
@@ -31,6 +32,8 @@ const validateNewUser = async (displayName, email, password) => {
 
 const postUser = async (displayName, email, password, image) => {
   const valid = await validateNewUser(displayName, email, password);
+
+  console.log(secret);
 
   if (valid.status !== 200) return valid;
 
