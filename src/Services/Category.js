@@ -1,4 +1,4 @@
-const { BlogPost, Category } = require('../database/models');
+const { BlogPost, Category, User } = require('../database/models');
 
 const postCategory = async (name) => {
   if (!name) {
@@ -28,7 +28,9 @@ const getCategories = async () => {
 const getCategoryById = async (id) => {
   const category = await Category.findByPk(id, {
     include: [
-      { model: BlogPost, as: 'blogPost' },
+      { model: BlogPost, as: 'blogPost', include: [
+        { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      ] },
     ],
   });
 
