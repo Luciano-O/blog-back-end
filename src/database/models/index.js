@@ -8,8 +8,6 @@ const env = process.env.NODE_ENV || 'development';
 const db = {};
 
 let sequelize = new Sequelize(process.env.URL, {
-  dialect: 'postgres',
-  protocol: 'postgres',
   dialectOptions: {
     ssl: {
       require: false,
