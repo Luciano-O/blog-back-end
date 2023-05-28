@@ -8,12 +8,12 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.js')[env];
 const db = {};
 
-let sequelize = new Sequelize(process.env.URL);
-// if (config.use_env_variable) {
-//   sequelize = new Sequelize(`postgres://blog_ppkn_user:Osc6LF2mqtZUUEgS6LJjMoW5RlROW50J@dpg-chpfe9e7avjb90mkdhj0-a.ohio-postgres.render.com/blog_ppkn`);
-// } else {
-//   sequelize = new Sequelize(config.database, config.username, config.password, config);
-// }
+let sequelize;
+if (config.use_env_variable) {
+  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+} else {
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
+}
 
 fs
   .readdirSync(__dirname)
