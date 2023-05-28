@@ -9,7 +9,7 @@ const options = {
   dialect: process.env.DIALECT,
   dialectOptions: {
     ssl: {
-      require: true,
+      require: false,
       rejectUnauthorized: false,
     },
   },
