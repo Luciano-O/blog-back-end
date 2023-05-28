@@ -22,4 +22,7 @@ module.exports = {
   test: {
     ...options,
   },
+  production: {
+    ...options
+  },
 };
