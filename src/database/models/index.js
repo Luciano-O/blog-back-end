@@ -8,7 +8,7 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.js')[env];
 const db = {};
 
-let sequelize = new Sequelize(config);
+let sequelize = new Sequelize(config[env]);
 
 fs
   .readdirSync(__dirname)
