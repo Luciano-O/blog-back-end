@@ -1,12 +1,14 @@
 'use strict';
+require('dotenv').config();
 
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
+const URL = process.env.URL
 const db = {};
 
-const sequelize = new Sequelize('postgresql://postgres:3TuyneWbppK9wLsc@db.howqcoohhmnjweyqezjp.supabase.co:5432/postgres', {
+const sequelize = new Sequelize(URL, {
   dialectOptions: {
     ssl: {
       require: false,
