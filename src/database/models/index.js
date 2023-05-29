@@ -4,11 +4,16 @@ const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.js')[env];
 const db = {};
 
-const sequelize = new Sequelize('postgres://blog_ppkn_user:Osc6LF2mqtZUUEgS6LJjMoW5RlROW50J@dpg-chpfe9e7avjb90mkdhj0-a/blog_ppkn');
+const sequelize = new Sequelize('postgresql://postgres:3TuyneWbppK9wLsc@db.howqcoohhmnjweyqezjp.supabase.co:5432/postgres', {
+  dialectOptions: {
+    ssl: {
+      require: false,
+      rejectUnauthorized: false,
+    },
+  },
+});
 
 fs
   .readdirSync(__dirname)

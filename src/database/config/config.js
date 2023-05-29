@@ -23,6 +23,6 @@ module.exports = {
     ...options,
   },
   production: {
-    ...options
+    ...options,
   },
 };
